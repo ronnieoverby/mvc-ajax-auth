@@ -10,8 +10,10 @@
     <script type="text/javascript">
         $(function () {
             $(document).ajaxError(function (e, xhr) {
-                var response = $.parseJSON(xhr.responseText);
-                window.location = response.LogOnUrl;
+                if (xhr.status == 403) {
+                    var response = $.parseJSON(xhr.responseText);
+                    window.location = response.LogOnUrl;
+                }
             });
         });
     </script>
